@@ -28,19 +28,6 @@ module Librarian
 
       def init
         copy_file environment.specfile_name
-
-        if File.exists? ".gitignore"
-          gitignore = File.read('.gitignore').split("\n")
-        else
-          gitignore = []
-        end
-
-        gitignore << ".tmp/" unless gitignore.include? ".tmp/"
-        gitignore << "modules/" unless gitignore.include? "modules/"
-
-        File.open(".gitignore", 'w') do |f|
-          f.puts gitignore.join("\n")
-        end
       end
 
       desc "install", "Resolves and installs all of the dependencies you specify."
